@@ -35,7 +35,8 @@ function ShoppingListCheckOffService() {
 
   
   // List of shopping items
-  var tobuyitems = [{name: "cookies", quantity: 10 },{name: "soda bottles", quantity: 20 },{name: "pen", quantity: 8},{name: "books", quantity: 15} ];
+  var tobuyitems = [{name: "cookies", quantity: 10 },{name: "soda bottles", quantity: 20 },{name: "pen", quantity: 8},{name: "books", quantity: 15}
+                   ,{name:"orange", quantity: 2}];
   var boughtitems =[];
   
   service.addItem = function (itemIndex) {
