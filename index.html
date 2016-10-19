@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <html ng-app="LunchCheck">
+    <head>
+      <meta charset="utf-8">
+      <script src="angular.min.js"></script>
+      <script src="app.js"></script>
+      <title>First Website</title>
+      <style>
+<<<<<<< HEAD
+         .greenbox {
+
+                      border-color: green;
+                    }
+         .redbox {
+                      border-color: red;
+         }
+=======
+         .greenbox {border-color: green;}
+         .redbox { border-color: red;}
+         .redtext {color: red;} 
+         .greentext {color: green;}
+         
+>>>>>>> f61b2edbf7435a7cd275dc9e0516092474726acb
+      </style>
+    </head>
+    <body>
+      <div ng-controller="LunchCheckController">
+      <h1> Assignment 1</h1>
+<<<<<<< HEAD
+      <input type = "text" id="textbox" ng-model="myLunch"></input>
+      <button type="submit" id="checkButton" ng-click="checkStatus()">Check If Too Much</button>
+      <h4>{{advice}}</h4>
+=======
+      <p> I've tried to advance this little app by implementing additional requirements. Specifically, we: </br>
+          - do not count any space between two commas like, , or,, or , as an item </br>
+          - change textbox color and text color along to different scenario </p>
+      <div>
+      <input type = "text" id="textbox" ng-model="myLunch" ng-class="boxcolor"></input>
+      <button type="submit" id="checkButton" ng-click="checkStatus()">Check If Too Much</button>
+      <h4 ng-class="textbox">{{advice}}</h4>
+      </div>
+>>>>>>> f61b2edbf7435a7cd275dc9e0516092474726acb
+      </div>
+    </body>
+  </html>
