@@ -1,0 +1,10 @@
+<ol>
+        <li ng-repeat="item in ourlist.foundList">
+          <ul>
+           <span class="name">{{item.short_name}} {{item.name}}</span> <button ng-click="ourlist.onRemove($index);">Don't one this one</button>
+           <li>{{item.description}}</li>
+          </ul>
+        </li>
+</ol>
+
+<div class="nothing">Not Found!</div>

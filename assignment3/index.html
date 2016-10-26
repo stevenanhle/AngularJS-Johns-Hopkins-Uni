@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app='NarrowItDownApp'>
+  <head>
+    <meta charset="utf-8">
+    <script src="jquery-3.1.0.min.js"></script><!-- PHAI INCULDE JQUERY HERE BEFORE ANGULARJS-->
+    <script src="angular.min.js"></script>
+    <script src="app1.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Using $http Service</title>
+  </head>
+  <body>
+    <h1>Search Result</h1>
+
+    <div ng-controller='NarrowItDownController as menu'>
+      <h3>Please Enter Key Word</h3>
+      <input name="search" type="textbox" ng-model="menu.searchTerm"><button ng-click="menu.Search(menu.searchTerm)">Narrow It Down</button>
+      <ol>
+        <found-items found-list="menu.oneList" on-remove="menu.removeItem" ><found-items>     
+      </ol>
+      <div ng-show="menu.notFound">Nothing Found</div>
+    
+      
+    </div>
+
+    </div>
+  </body>
+</html>
