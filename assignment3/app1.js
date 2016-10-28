@@ -5,7 +5,7 @@ angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
 .service('MenuCategoriesService', MenuCategoriesService)
 .directive('foundItems',FoundItems)
-.constant('ApiBasePath', "http://davids-restaurant.herokuapp.com");
+.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
 function FoundItems() {
   var ddo = {
@@ -65,15 +65,27 @@ function SearchDirectiveController() {
 NarrowItDownController.$inject = ['MenuCategoriesService'];
 function NarrowItDownController(MenuCategoriesService) {
   var menu = this;
- 
-  menu.oneList =  MenuCategoriesService.getSortedItems();
-  menu.notFound=  MenuCategoriesService.getNotFound();
+  menu.notFound=false;
+  menu.deleteAll = false;
+  menu.matchedList= [];
+  menu.searchTerm="";
   menu.Search = function (searchTerm) {
-                  MenuCategoriesService.getMatchedMenuItems(searchTerm);
-                  menu.notFound=MenuCategoriesService.getNotFound();
-                  };//end of Search function
+                  menu.deleteAll = false;
+                  MenuCategoriesService.getMatchedMenuItems(searchTerm).then(function(response){
+                    menu.matchedList=response;
+                    if(response.length>0)
+                        menu.notFound=false;
+                     else
+                        menu.notFound=true;
+                  })
+          };//end of Search function
 
-  menu.removeItem = function(index){MenuCategoriesService.removeItem(index)};
+  menu.removeItem = function(index){ MenuCategoriesService.removeItem(index);
+                                     if(menu.matchedList.length>0)
+                                      menu.deleteAll =false;
+                                     else
+                                      menu.deleteAll=true;
+                                   };
 
 
 }
@@ -82,9 +94,7 @@ function NarrowItDownController(MenuCategoriesService) {
 MenuCategoriesService.$inject = ['$http', 'ApiBasePath']
 function MenuCategoriesService($http, ApiBasePath) {
   var service = this;
-  var firstList=[];
-  
-  var notFound = false;// false if the page is refesh or nothing match after search button clicked
+  service.firstList=[];
 
   service.getAllItems = function () {
     var response = $http({
@@ -95,32 +105,31 @@ function MenuCategoriesService($http, ApiBasePath) {
   };//end
   
   service.getMatchedMenuItems = function(searchTerm){
-    var promise = service.getAllItems();
-    firstList.splice(0,firstList.length);
-    promise.then(function (response) {
-      
+    return $http({
+      method: "GET",
+      url: (ApiBasePath + "/menu_items.json")
+    }).then(function (response) {
+      service.firstList.splice(0,service.firstList.length);
       var items = response.data.menu_items;
       var i =0;
       for(i=0; i<items.length; i++)
       {
         var desc=items[i].description.toLowerCase();
         if(searchTerm.trim('')!==""&&desc.includes(searchTerm.toLowerCase())==true)
-          firstList.push(items[i]);
+          service.firstList.push(items[i]);
       }
-      if(firstList.length>0)
-        notFound=true;
-    })
+        return service.firstList;
+    })// end of then
+
   }//end
 
-  service.getSortedItems = function() {return firstList}//end
+  //service.getSortedItems = function() {return firstList}//end
   service.removeItem=function(index){
-    firstList.splice(index,1);
+    service.firstList.splice(index,1);
     }//end
 
-  service.getNotFound = function(){return notFound}//end
 
 
 }
 
 })();
-

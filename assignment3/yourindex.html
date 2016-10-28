@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "NarrowItDownApp">
+<head>
+    <meta charset="UTF-8">
+    <title> Narrow It Down ! </title>
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity = "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin = "anonymous">
+    <link rel = "stylesheet" href = "css/styles.css" />
+</head>
+<body>
+   
+    <div class = "jumbotron">
+        <div class = "container">
+            <h1><span class = "glyphicon glyphicon-cutlery"></span> Narrow It Down </h1>
+            <p> Coursera module 3 assignment. </p>
+        </div>
+    </div>
+    
+    <div class = "container-fluid">
+        
+        <div class = "row" ng-controller = "NarrowItDownController as nidc">
+            
+            <div class = "col-md-4">
+                
+                <div class="panel panel-warning">
+                    <div class="panel-heading"> Search (case-insensitive) </div>
+                    <div class="panel-body">
+                       
+                        <div class = "form-group">
+                            <input type = "text" class = "form-control" ng-model = "nidc.searchTerm" placeholder="Narrow It Down For Me" />
+                        </div>
+                        
+                        <button class = "btn btn-danger pull-right" ng-click = "nidc.search()">Narrow It Down For Me!</button>
+                        <div class="errorMessage" ng-if = "nidc.errorIndicator > 0">Nothing found</div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class = "col-md-8" ng-if = "nidc.errorIndicator === 0">
+                
+                <div class="panel panel-warning">
+                    <div class="panel-heading"> Results </div>
+                    <div class="panel-body">
+                        
+                        <found-items items = "nidc.found" on-remove = "nidc.remove(index)"> No more dishes with {{ nidc.searchTerm }} </found-items>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src = "yourapp.js"></script>
+</body>
+</html>
