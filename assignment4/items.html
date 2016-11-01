@@ -1,0 +1,8 @@
+<a ui-sref="categories">Go Back to All Categories Page</a>
+
+<h2>Food in Category {{categoryDetail.ctgrName}}</h2>
+<ul>
+  <li ng-repeat="item in categoryDetail.items">
+    {{ item.name}} 
+  </li>
+</ul>
