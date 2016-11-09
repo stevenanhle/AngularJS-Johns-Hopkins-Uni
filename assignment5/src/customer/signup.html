@@ -1,0 +1,53 @@
+<div id="signup" class="container" ng-controller="CustomerSignUpController as customerSignUpCtrl">
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Please sign up for newsletters</h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form role="form" name='regForm' novalidate>
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+						                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name" required ng-model="customerSignUpCtrl.customer.firstname" >
+						                <span ng-if="(regForm.first_name.$error.required) && regForm.first_name.$touched">
+			                            First name is required
+			                            </span>
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+				    					<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name" required ng-model="customerSignUpCtrl.customer.lastname">
+				    					<span ng-if="(regForm.last_name.$error.required) && regForm.last_name.$touched">
+	                                    Last name is required 
+	                                    </span>
+			    					</div>
+			    				</div>
+			    			</div>
+
+			    			<div class="form-group">
+			    				<input type="text" name="email" id="email" class="form-control input-sm" placeholder="Email Address" required ng-model="customerSignUpCtrl.customer.email">
+			    				<span ng-if="(regForm.email.$error.required) && regForm.email.$touched"> Email is required </span>
+			    			</div>
+			    			<div class="form-group">
+			    				<input type="text" name="phone" id="phone" class="form-control input-sm" placeholder="Phone Number" required ng-model="customerSignUpCtrl.customer.phone">
+			    				<span ng-if="(regForm.phone.$error.required) && regForm.phone.$touched">
+	                            Phone Number is required </span>
+			    			</div>
+
+			    			<div class="form-group">
+			    				<input type="text" name="favorite" id="favorite" class="form-control input-sm" placeholder="Favorite Menu Code" ng-model="customerSignUpCtrl.customer.menu" required my-directive>
+			    				<span  ng-if="!regForm.favorite.$valid && regForm.favorite.$touched">We Don't Have That Menu Code</span>
+			    			</div>
+			    			
+			    			<a ui-sref="cusinfor" ng-disabled="regForm.$invalid"> <button name="btn" ng-disabled="regForm.$invalid" ng-click="customerSignUpCtrl.saveCusInformation()">Submit</button></a>
+
+			    			
+			    		
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>

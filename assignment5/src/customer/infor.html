@@ -1,0 +1,42 @@
+
+<div id="infor"class="container" ng-controller="CustomerInforController as cusInfor">
+  <h2 ng-if="cusInfor.customerInfor.length>0" class="text-center">Customers registered for newsletter</h2>
+  <h2 ng-if="cusInfor.customerInfor.length==0" class="text-center">No customer registers for newsletter yet</h2>
+  <div class="panel-group" ng-repeat="cus in cusInfor.customerInfor">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-info">
+          <div class="panel-heading">Customer Information</div>
+          <div class="panel-body">
+            <h3 class="text-center"><em>{{cus.cusFirstName | uppercase}} {{cus.cusLastName | uppercase}} </em></h3>
+            <ul>
+              <li>
+                 Customer Email: {{cus.cusEmail}}
+              </li>
+              <li>
+                 Customer Phone Number: {{cus.cusPhone}}
+              </li>
+              <li>
+                 Customer Favorite Menu: {{cus.cusMenu  | uppercase}}
+              </li>
+            </ul>
+            <div class="menu-item-tile col-md-12">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="menu-item-photo">
+                    <img class="img-responsive" width="250" height="150" src="https://my-restaurant.herokuapp.com/images/{{cus.cusMenu}}.jpg" alt="Item">
+                  </div>
+                </div>
+                <div class="menu-item-description col-sm-12">
+                  <h3 class="menu-item-title">{{cus.ObjectMenu.name}}</h3>
+                  <p class="menu-item-details">{{cus.ObjectMenu.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
