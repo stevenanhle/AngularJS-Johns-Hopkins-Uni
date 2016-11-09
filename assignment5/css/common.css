@@ -19,7 +19,11 @@
     margin-top: 60px;
 }
 
-
+#success{color:green;}
 #infor {color: #222;}
 #infor h2 {color: yellow;}
-#signup {color: red;}
+.form-group {color: red;}
+button[disabled] {
+    cursor:not-allowed;
+} 
+button {color: black;}

@@ -27,11 +27,11 @@ angular.module('customer')
                 var listOfShortName =[];
                 for(var i=0;i<response.length;i++)
                 {
-                  listOfShortName.push(response[i].short_name.toLowerCase());
+                  listOfShortName.push(response[i].short_name);
                 }
              
 
-                if (listOfShortName.indexOf(value.trim().toLowerCase())>-1) 
+                if (listOfShortName.indexOf(value)>-1) 
                 {
                     mCtrl.$setValidity('check', true);
                     var infor=true;
@@ -61,11 +61,12 @@ function CustomerSignUpController(CusSignUpService) {
   ctrl.customer.email="";
   ctrl.customer.phone="";
   ctrl.customer.menu="";
+  ctrl.success=false;
 
   ctrl.saveCusInformation = function(){
   
   	CusSignUpService.saveCustomer(ctrl.customer);
-    
+    ctrl.success=true;
   };
 
   ctrl.getCusInformation = function(){
@@ -81,7 +82,7 @@ CusSignUpService.$injectt=['GetDataService']
 function CusSignUpService(GetDataService)
 {
   var service = this;
-  service.customers =[];
+  //service.customers =[];
   service.saveCustomer = function(customer){ 
   service.customer= new Object();
   service.customer.cusFirstName =customer.firstname;
@@ -111,13 +112,13 @@ function CusSignUpService(GetDataService)
         }       
       }
   });
-  service.customers.push(service.customer);
+  //service.customers.push(service.customer);
 }
     
     
   service.getCusInformation=function(){
     
-       return service.customers;
+       return service.customer;
   };
 
 }
