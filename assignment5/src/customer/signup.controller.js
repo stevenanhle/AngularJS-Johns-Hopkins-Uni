@@ -3,9 +3,7 @@
 
 angular.module('customer')
 .controller('CustomerSignUpController', CustomerSignUpController)
-.controller('CustomerInforController', CustomerInforController)
 .service('CusSignUpService', CusSignUpService)
-.service('GetDataService',GetDataService)
 .directive('myDirective', MyDirective);
 
    MyDirective.$inject = ['GetDataService'];
@@ -75,21 +73,9 @@ function CustomerSignUpController(CusSignUpService) {
   };
 }
 
-CustomerInforController.$inject = ['CusSignUpService'];
-function CustomerInforController(CusSignUpService) {
-  var ctrl = this;
-  ctrl.customerInfor = CusSignUpService.getCusInformation();
-}
 
-GetDataService.$inject = ['$http'];
-function GetDataService($http)
-{
-  return $http.get('https://my-restaurant.herokuapp.com/menu_items.json').then(function (response)
-                 {
-                     return response.data.menu_items;
-                 });
 
-}
+
 
 CusSignUpService.$injectt=['GetDataService']
 function CusSignUpService(GetDataService)
